@@ -22,7 +22,7 @@ public class GroundController : MonoBehaviour
     {
         if (IsGroundOutOfSight())
         {
-            transform.position = new Vector3(mainCamera.transform.position.x + length - 0.2F, transform.position.y);
+            RepositionAsNextGround();
         }
     }
     
@@ -30,6 +30,13 @@ public class GroundController : MonoBehaviour
     private bool IsGroundOutOfSight()
     {
         return mainCamera.transform.position.x - transform.position.x > length;
+    }
+
+
+    private void RepositionAsNextGround()
+    {
+        transform.position = new Vector3(mainCamera.transform.position.x + length - 0.25F, transform.position.y);
+        GameManager.Instance.NextGroundPositioned(transform.position, boxCollider.size.x);
     }
 }
 

@@ -10,17 +10,17 @@ public class PlayerController : MonoBehaviour
     // Fields
     public float yForce;
     
-    private Rigidbody2D rb;
+    private Rigidbody2D rigidBody;
     private Animator animator;
     private PoopSpawner poopSpawner;
     
     
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        poopSpawner = GetComponent<PoopSpawner>();
-        rb.velocity = new Vector2(5F, 0F);
+        poopSpawner = GetComponentInChildren<PoopSpawner>();
+        rigidBody.velocity = new Vector2(5F, 0F);
     }
 
 
@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && !IsDead)
         {
             poopSpawner.ThrowPoop();
+            rigidBody.velocity = new Vector2(5F, rigidBody.velocity.y);
         }
     }
 
@@ -50,8 +51,8 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         var force = new Vector2(0F, yForce);
-        rb.velocity = new Vector2(rb.velocity.x, 0F);
-        rb.AddForce(force);
+        rigidBody.velocity = new Vector2(5F, 0F); //(rb.velocity.x, 0F);
+        rigidBody.AddForce(force);
         animator.SetTrigger("fly");
     }
     
