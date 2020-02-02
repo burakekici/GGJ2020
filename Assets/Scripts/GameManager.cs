@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         score++;
         uiController.UpdateScoreText(score);
         uiController.Celebrate();
-        KyVibrator.Vibrate(60);
+        KyVibrator.Vibrate(40);
         if (poopsLeft < poopsMax)
         {
             poopsLeft++;

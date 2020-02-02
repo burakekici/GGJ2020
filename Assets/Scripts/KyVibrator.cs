@@ -3,6 +3,7 @@
 
 public class KyVibrator : MonoBehaviour
 {
+#if UNITY_ANDROID
     private static readonly AndroidJavaObject Vibrator =
         new AndroidJavaClass("com.unity3d.player.UnityPlayer")// Get the Unity Player.
             .GetStatic<AndroidJavaObject>("currentActivity")// Get the Current Activity from the Unity Player.
@@ -18,17 +19,21 @@ public class KyVibrator : MonoBehaviour
             Handheld.Vibrate();
         }
     }
-    
+#endif
     
     public static void Vibrate(long milliseconds)
     {
+#if UNITY_ANDROID
         Vibrator.Call("vibrate", milliseconds);
+#endif
     }
     
 
     public static void Vibrate(long[] pattern, int repeat)
     {
+#if UNITY_ANDROID
         Vibrator.Call("vibrate", pattern, repeat);
+#endif
     }
 }
 

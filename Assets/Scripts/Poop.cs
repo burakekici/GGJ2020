@@ -7,10 +7,12 @@ public class Poop : MonoBehaviour
     
     private BoxCollider2D boxCollider;
     private Rigidbody2D rigidBody;
+    private ParticleSystem particleEmitter;
 
 
     private void Awake()
     {
+        particleEmitter = GetComponentInChildren<ParticleSystem>();
         boxCollider = GetComponent<BoxCollider2D>();
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.velocity = new Vector2(xVelocity, rigidBody.velocity.y);
@@ -25,6 +27,11 @@ public class Poop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (DidHitSomething(other.gameObject))
+        {
+            particleEmitter.Stop();
+        }
+        
         if (!DidHitTarget<TargetController>(other.gameObject))
         {
             return;
@@ -39,6 +46,15 @@ public class Poop : MonoBehaviour
         targetController.Reveal();
         GameManager.Instance.PlayerScored();
         Destroy(gameObject);
+    }
+
+
+    private static bool DidHitSomething(GameObject go)
+    {
+        return go != null &&
+               (go.CompareTag(Constants.TargetTag) || 
+                go.CompareTag(Constants.GroundTag) ||
+                go.CompareTag(Constants.ObstacleTag));
     }
 
 
