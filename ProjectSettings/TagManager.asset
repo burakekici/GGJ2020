@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bird
+  - Obstacle
+  - Ground
+  - Background
+  - Target
   layers:
   - Default
   - TransparentFX
@@ -13,9 +18,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Target
+  - Obstacle
+  - Player
   - 
   - 
   - 
@@ -38,6 +43,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 261929551
+    locked: 0
+  - name: Ground
+    uniqueID: 1733369149
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ui
+    uniqueID: 2330936673
     locked: 0
