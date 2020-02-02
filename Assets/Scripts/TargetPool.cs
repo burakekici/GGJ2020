@@ -22,23 +22,15 @@ public class TargetPool : MonoBehaviour
         GameManager.Instance.NotifyOnNextGroundPositionedObservers -= NextGroundPositioned;
     }
 
-
-    private void Update()
-    {
-        
-    }
-
-
+    
     private void NextGroundPositioned(Vector3 groundPosition, float groundWidth)
     {
-        Printer.PrintGreen("Next ground position: " + groundPosition + " - Width: " + groundWidth);
-
         var count = Random.Range(2, 5);
         
         for (int i = 0; i < count; i++)
         {
             var t = Instantiate(targetPrefab, transform).transform;
-            float randomPositionX = Random.Range(groundPosition.x, groundPosition.x + groundWidth);
+            float randomPositionX = Random.Range(groundPosition.x, groundPosition.x + groundWidth * i / count);
             t.position = new Vector3(randomPositionX, t.position.y);
         }
     }

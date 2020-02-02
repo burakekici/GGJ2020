@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -22,33 +21,11 @@ public class PlayerController : MonoBehaviour
         poopSpawner = GetComponentInChildren<PoopSpawner>();
         rigidBody.velocity = new Vector2(5F, 0F);
     }
+    
 
+    #region Flap
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (IsDead)
-            {
-                SceneManager.LoadScene(0);
-            }
-            else
-            {
-                Jump();
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.S) && !IsDead)
-        {
-            poopSpawner.ThrowPoop();
-            rigidBody.velocity = new Vector2(5F, rigidBody.velocity.y);
-        }
-    }
-
-
-    #region Jump
-
-    private void Jump()
+    public void Flap()
     {
         var force = new Vector2(0F, yForce);
         rigidBody.velocity = new Vector2(5F, 0F); //(rb.velocity.x, 0F);
@@ -56,6 +33,18 @@ public class PlayerController : MonoBehaviour
         animator.SetTrigger("fly");
     }
     
+    #endregion
+
+
+    #region Flap
+    
+    public void Poop()
+    {
+        poopSpawner.ThrowPoop();
+        rigidBody.velocity = new Vector2(5F, rigidBody.velocity.y);
+        GameManager.Instance.PlayerPooped();
+    }    
+
     #endregion
     
 
@@ -65,8 +54,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag(Constants.GroundTag))
         {
-            Printer.PrintRed("Player hit to GROUND.");
-            IsDead = true;
+            GameManager.Instance.PlayerDied();
             animator.SetTrigger("die");
         }
     }

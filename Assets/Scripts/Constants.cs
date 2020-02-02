@@ -10,5 +10,8 @@ public static class Constants
 
     // Sorting layers
 
+    
+    // PlayerPrefs Keys
+    public const string HighScoreKey = "highScore";
 }
 
