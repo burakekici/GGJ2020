@@ -1856,6 +1856,8 @@ MonoBehaviour:
   gameEndCanvas: {fileID: 766422758}
   gameEndScoreText: {fileID: 1123325682}
   gameEndHighestScoreText: {fileID: 2135119758}
+  celebrationPrefab: {fileID: 856613033108278334, guid: 2a0ad80293de44717b72f3a23d5b65e4,
+    type: 3}
 --- !u!1 &1798255910
 GameObject:
   m_ObjectHideFlags: 0

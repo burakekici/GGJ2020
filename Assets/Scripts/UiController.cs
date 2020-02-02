@@ -11,6 +11,8 @@ public class UiController : MonoBehaviour
     public Canvas gameEndCanvas;
     public Text gameEndScoreText;
     public Text gameEndHighestScoreText;
+    [Header("Celebration")] 
+    public GameObject celebrationPrefab;
 
 
     private void Start()
@@ -66,6 +68,17 @@ public class UiController : MonoBehaviour
         gameEndHighestScoreText.text = "Highest Score: " + highestScore;
     }
     
+    #endregion
+
+
+    #region Celebration
+
+    public void Celebrate()
+    {
+        var controller = Instantiate(celebrationPrefab, transform).GetComponent<CelebrationUi>();
+        controller.Initialize();
+    }
+
     #endregion
 }
 
