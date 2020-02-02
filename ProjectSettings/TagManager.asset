@@ -19,8 +19,8 @@ TagManager:
   - 
   - 
   - Target
-  - 
-  - 
+  - Obstacle
+  - Player
   - 
   - 
   - 
@@ -54,7 +54,4 @@ TagManager:
     locked: 0
   - name: Ui
     uniqueID: 2330936673
-    locked: 0
-  - name: New Layer
-    uniqueID: 2809030231
     locked: 0

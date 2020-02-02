@@ -56,6 +56,8 @@ public class UiController : MonoBehaviour
     
     #endregion
     
+    
+    #region Game end canvas
 
     public void ShowGameEndCanvas(int score, int highestScore)
     {
@@ -63,5 +65,7 @@ public class UiController : MonoBehaviour
         gameEndScoreText.text = "Your Score: " + score;
         gameEndHighestScoreText.text = "Highest Score: " + highestScore;
     }
+    
+    #endregion
 }
 

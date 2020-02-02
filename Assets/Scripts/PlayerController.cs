@@ -3,10 +3,6 @@
 
 public class PlayerController : MonoBehaviour
 {
-    // Properties
-    public bool IsDead { get; private set; }
-
-    // Fields
     public float yForce;
     
     private Rigidbody2D rigidBody;
@@ -52,11 +48,17 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag(Constants.GroundTag))
+        if (DidHitObstacle(other.gameObject))
         {
             GameManager.Instance.PlayerDied();
             animator.SetTrigger("die");
         }
+    }
+
+
+    private static bool DidHitObstacle(GameObject go)
+    {
+        return go.CompareTag(Constants.GroundTag) || go.CompareTag(Constants.ObstacleTag);
     }
     
     #endregion

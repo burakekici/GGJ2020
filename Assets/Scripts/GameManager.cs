@@ -8,11 +8,12 @@ public class GameManager : MonoBehaviour
     
     public UiController uiController;
     public PlayerController playerController;
+    
+    public bool IsDead {get; private set; }
     public int poopsMax;
 
     private int poopsLeft;
     private int score;
-    private bool isDead;
 
 
     private void Awake()
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     private void Initialize()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        Application.targetFrameRate = 60;
+
         score = 0;
         poopsLeft = poopsMax;
         uiController.UpdateScoreText(score);
@@ -48,7 +52,7 @@ public class GameManager : MonoBehaviour
 
     public void Flap()
     {
-        if (isDead)
+        if (IsDead)
         {
             return;
         }
@@ -58,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     public void Poop()
     {
-        if (isDead)
+        if (IsDead || poopsLeft == 0)
         {
             return;
         }
@@ -74,7 +78,10 @@ public class GameManager : MonoBehaviour
     {
         score++;
         uiController.UpdateScoreText(score);
-        poopsLeft++;
+        if (poopsLeft < poopsMax)
+        {
+            poopsLeft++;
+        }
     }
 
 
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDied()
     {
         Printer.PrintRed("Player hit to GROUND.");
-        isDead = true;
+        IsDead = true;
         
         UpdateHighScore(score);
         uiController.ShowGameEndCanvas(score, GetHighScore());

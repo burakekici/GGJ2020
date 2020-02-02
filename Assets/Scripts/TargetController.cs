@@ -3,17 +3,20 @@
 
 public class TargetController : MonoBehaviour
 {
-    public GameObject deadTarget;
-    public GameObject aliveTarget;
+    private Animator animator;
+    public bool IsRevealed { get; private set; }
 
-    private bool isRevealed;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
 
     public void Reveal()
     {
-        deadTarget.SetActive(false);
-        aliveTarget.SetActive(true);
-        isRevealed = true;
+        animator.SetTrigger("reveal");
+        IsRevealed = true;
     }
 }
 

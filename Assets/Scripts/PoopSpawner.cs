@@ -8,6 +8,7 @@ public class PoopSpawner : MonoBehaviour
 
     public void ThrowPoop()
     {
+        //FIXME: Animation.
         Instantiate(poopPrefab, transform.position, Quaternion.identity);
     }
 }

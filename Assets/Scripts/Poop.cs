@@ -25,12 +25,20 @@ public class Poop : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (DidHitTarget<TargetController>(other.gameObject))
+        if (!DidHitTarget<TargetController>(other.gameObject))
         {
-            other.gameObject.GetComponent<TargetController>().Reveal();
-            GameManager.Instance.PlayerScored();
-            Destroy(gameObject);
+            return;
         }
+        
+        var targetController = other.gameObject.GetComponent<TargetController>();
+        if (targetController.IsRevealed)
+        {
+            return;
+        }
+            
+        targetController.Reveal();
+        GameManager.Instance.PlayerScored();
+        Destroy(gameObject);
     }
 
 

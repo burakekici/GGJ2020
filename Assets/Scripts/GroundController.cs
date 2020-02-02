@@ -36,7 +36,7 @@ public class GroundController : MonoBehaviour
     private void RepositionAsNextGround()
     {
         transform.position = new Vector3(mainCamera.transform.position.x + length - 0.25F, transform.position.y);
-        GameManager.Instance.NextGroundPositioned(transform.position, boxCollider.size.x);
+        GameManager.Instance.NextGroundPositioned(transform.position, boxCollider.size.x - 0.25F);
     }
 }
 

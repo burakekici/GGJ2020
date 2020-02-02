@@ -7,6 +7,10 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (GameManager.Instance.IsDead)
+            {
+                GameManager.ReloadScene();
+            }
             GameManager.Instance.Flap();
         }
 
