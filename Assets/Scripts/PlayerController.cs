@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     
     public void Poop()
     {
+        animator.SetTrigger("poop");
         poopSpawner.ThrowPoop();
         rigidBody.velocity = new Vector2(5F, rigidBody.velocity.y);
         GameManager.Instance.PlayerPooped();
